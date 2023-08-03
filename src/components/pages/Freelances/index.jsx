@@ -20,6 +20,11 @@ const freelanceProfiles = [
     jobTitle: "Développeuse Fullstack",
     picture: DefaultPicture,
   },
+  {
+    name: "Jeanine Soulard",
+    jobTitle: "Développeuse Fullstack",
+    picture: DefaultPicture,
+  },
 ];
 
 const CardsContainer = styled.div`

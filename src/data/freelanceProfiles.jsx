@@ -3,15 +3,19 @@
 const freelanceProfiles = [
   {
     name: "Jane Doe",
-    jobTitle: "Devops",
+    jobTitle: "UX Designer",
   },
   {
     name: "John Doe",
-    jobTitle: "Developpeur frontend",
+    jobTitle: "Développeur frontend",
   },
   {
     name: "Jeanne Biche",
-    jobTitle: "Développeuse Fullstack",
+    jobTitle: "Devops",
+  },
+  {
+    name: "Jeanine Soulard",
+    jobTitle: "UX Designer",
   },
 ];
 
