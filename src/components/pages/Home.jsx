@@ -46,7 +46,9 @@ const Home = () => {
             Repérez vos besoins, on s’occupe du reste, avec les meilleurs
             talents
           </StyledTitle>
-          <StyledLink to="/survey/1"></StyledLink>
+          <StyledLink to="/survey/1" $isFullLink>
+            faire le test
+          </StyledLink>
         </LeftCol>
         <Illustration src={HomeIllustration} />
       </HomeContainer>

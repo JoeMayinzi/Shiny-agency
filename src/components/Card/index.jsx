@@ -6,10 +6,13 @@ import colors from "../../utils/style/colors";
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
   padding: 15px;
   background-color: ${colors.backgroundLight};
   border-radius: 30px;
-  width: 350px;
+  width: 300px;
+  height: 300px;
   transition: 200ms;
   &:hover {
     cursor: pointer;
@@ -24,6 +27,7 @@ const CardLabel = styled.span`
 `;
 
 const CardImage = styled.img`
+  margin: 0 auto;
   height: 80px;
   width: 80px;
   border-radius: 50%;
