@@ -9,6 +9,7 @@ import ClientForm from "./components/ClientForm";
 import Error from "./components/Error";
 import Freelances from "./components/pages/Freelances";
 import { createGlobalStyle } from "styled-components";
+import Results from "./components/pages/Freelances/Results";
 
 const GlobalStyle = createGlobalStyle`
     div {
@@ -29,6 +30,7 @@ root.render(
         </Route>
         <Route path="/freelances" element={<Freelances />} />
         <Route path="*" element={<Error />} />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </Router>
   </React.StrictMode>

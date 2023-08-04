@@ -4,6 +4,7 @@ import colors from "../../utils/style/colors";
 import ErrorImg from "../../assets/undraw_page_not_found_su7k 1.svg";
 
 const ErrorWrapper = styled.div`
+  height: 100vh;
   margin: 30px;
   display: flex;
   flex-direction: column;
