@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { styled } from "styled-components";
@@ -35,18 +36,26 @@ const Survey = () => {
   const prevQuestionNumber =
     questionNumberInt === 1 ? 1 : questionNumberInt - 1;
   const nextQuestionNumber = questionNumberInt + 1;
-  const [surveyData, setSuveyData] = useState({});
+  const [surveyData, setSurveyData] = useState({});
   const [isDataLoading, setDataLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setDataLoading(true);
-    fetch("http://localhost:8000/survey")
-      .then((response) => response.json())
-      .then(({ surveyData }) => {
-        setSuveyData(surveyData);
+    async function fetchSurvey() {
+      try {
+        const response = await fetch("http://localhost:8000/survey");
+        const { surveyData } = await response.json();
+        setSurveyData(surveyData);
+      } catch (e) {
+        console.log(e);
+        setError(error);
+      } finally {
         setDataLoading(false);
-      })
-      .catch((error) => console.log(error));
+      }
+    }
+
+    fetchSurvey();
   }, []);
   return (
     <div>
