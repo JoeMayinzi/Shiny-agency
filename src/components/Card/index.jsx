@@ -33,19 +33,19 @@ const CardImage = styled.img`
   border-radius: 50%;
 `;
 
-const Card = ({ label, title, picture }) => {
+const Card = ({ name, job, picture }) => {
   return (
     <CardWrapper>
-      <CardLabel> {label} </CardLabel>
+      <CardLabel> {name} </CardLabel>
       <CardImage src={picture} alt="freelance" />
-      <span> {title} </span>
+      <span> {job} </span>
     </CardWrapper>
   );
 };
 
 Card.propTypes = {
-  label: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  job: PropTypes.string.isRequired,
   picture: PropTypes.string,
 };
 

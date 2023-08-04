@@ -1,31 +1,8 @@
-import React from "react";
-import DefaultPicture from "../../../../src/assets/profile.png";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import Card from "../../Card";
 import { styled } from "styled-components";
 import colors from "../../../utils/style/colors";
-
-const freelanceProfiles = [
-  {
-    name: "Jane Doe",
-    jobTitle: "Devops",
-    picture: DefaultPicture,
-  },
-  {
-    name: "John Doe",
-    jobTitle: "Developpeur frontend",
-    picture: DefaultPicture,
-  },
-  {
-    name: "Jeanne Biche",
-    jobTitle: "Développeuse Fullstack",
-    picture: DefaultPicture,
-  },
-  {
-    name: "Jeanine Soulard",
-    jobTitle: "Développeuse Fullstack",
-    picture: DefaultPicture,
-  },
-];
 
 const CardsContainer = styled.div`
   display: grid;
@@ -52,6 +29,25 @@ const PageSubtitle = styled.h2`
 `;
 
 const Freelances = () => {
+  const [profileList, setProfileList] = useState([]);
+  const [isDataLoading, setDataLoading] = useState(false);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    setDataLoading(isDataLoading);
+    async function fetchProfiles() {
+      try {
+        const response = await fetch("http://localhost:8000/freelances");
+        const { freelancersList } = await response.json();
+        setProfileList(freelancersList);
+      } catch (e) {
+        console.log(error);
+        setError(true);
+      } finally {
+        setDataLoading(true);
+      }
+    }
+    fetchProfiles();
+  }, []);
   return (
     <div>
       <PageTitle>Trouvez votre prestataire</PageTitle>
@@ -59,12 +55,12 @@ const Freelances = () => {
         Chez Shiny nous réunissons les meilleurs profils pour vous.
       </PageSubtitle>
       <CardsContainer>
-        {freelanceProfiles.map((profile, index) => (
+        {profileList.map((profile) => (
           <Card
-            key={`${profile.name}-${index}`}
-            label={profile.jobTitle}
+            key={profile.id}
+            name={profile.name}
+            job={profile.job}
             picture={profile.picture}
-            title={profile.name}
           />
         ))}
       </CardsContainer>

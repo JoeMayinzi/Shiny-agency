@@ -9,7 +9,7 @@ import ClientForm from "./components/ClientForm";
 import Error from "./components/Error";
 import Freelances from "./components/pages/Freelances";
 import { createGlobalStyle } from "styled-components";
-import Results from "./components/pages/Freelances/Results";
+import Results from "./components/pages/Results";
 
 const GlobalStyle = createGlobalStyle`
     div {
