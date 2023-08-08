@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import colors from "../../utils/style/colors";
 import { Loader } from "../../utils/style/Atoms";
+import { useFecth } from "../../utils/hooks";
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -36,39 +37,27 @@ const Survey = () => {
   const prevQuestionNumber =
     questionNumberInt === 1 ? 1 : questionNumberInt - 1;
   const nextQuestionNumber = questionNumberInt + 1;
-  const [surveyData, setSurveyData] = useState({});
-  const [isDataLoading, setDataLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const { data, isLoading } = useFecth(`http://localhost:8000/survey`);
+  const { surveyData } = data;
+  //const [surveyData, setSurveyData] = useState({});
+  //const [isDataLoading, setDataLoading] = useState(false);
+  //const [error, setError] = useState(false);
 
-  useEffect(() => {
-    setDataLoading(true);
-    async function fetchSurvey() {
-      try {
-        const response = await fetch("http://localhost:8000/survey");
-        const { surveyData } = await response.json();
-        setSurveyData(surveyData);
-      } catch (e) {
-        console.log(e);
-        setError(error);
-      } finally {
-        setDataLoading(false);
-      }
-    }
-
-    fetchSurvey();
-  }, []);
   return (
     <div>
       <SurveyContainer>
         <QuestionTitle>Question {questionNumber} </QuestionTitle>
-        {isDataLoading ? (
+        {isLoading ? (
           <Loader />
         ) : (
-          <QuestionContent> {surveyData[questionNumber]} </QuestionContent>
+          <QuestionContent>
+            {" "}
+            {surveyData && surveyData[questionNumber]}{" "}
+          </QuestionContent>
         )}
         <LinkWrapper>
           <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
-          {surveyData[questionNumberInt + 1] ? (
+          {surveyData && surveyData[questionNumberInt + 1] ? (
             <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
           ) : (
             <Link to="/results">Résultats</Link>
