@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./components/pages/Home";
 import reportWebVitals from "./reportWebVitals";
